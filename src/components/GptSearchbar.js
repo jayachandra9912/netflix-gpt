@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import lang from '../utils/languageConstants'
 import { useSelector } from 'react-redux'
-import openai from '../utils/openai'
+
 
 const GptSearchbar = () => {
     // const handleGptSearchClick = async () => {
