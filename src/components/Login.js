@@ -74,22 +74,52 @@ const Login = () => {
     return (
         <div>
             <Header />
-            <div className='absolute'>
-                <img src={BG_URL} alt="logo" />
-
+            <div className="relative min-h-screen">
+                <img src={BG_URL} alt="logo" className="absolute inset-0 w-full h-full object-cover" />
+                <form
+                    onSubmit={(e) => e.preventDefault()}
+                    className="absolute my-12 mx-auto bg-black right-0 left-0 p-6 sm:p-12 w-11/12 sm:w-3/12 text-white rounded-lg bg-opacity-80 top-1/2 transform -translate-y-1/2"
+                >
+                    <h1 className="font-bold text-3xl py-4">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
+                    {!isSignInForm && (
+                        <input
+                            ref={name}
+                            type="text"
+                            placeholder="FullName"
+                            className="p-4 my-4 w-full bg-gray-700"
+                        />
+                    )}
+                    <input
+                        ref={email}
+                        type="text"
+                        placeholder="Email Address"
+                        className="p-4 my-4 w-full bg-gray-700"
+                    />
+                    <input
+                        ref={password}
+                        type="password"
+                        placeholder="Password"
+                        className="p-4 my-4 w-full bg-gray-700"
+                    />
+                    <p className="text-red-700 font-bold text-lg py-2">{errorMessage}</p>
+                    <button
+                        type="button"
+                        className="p-4 my-6 bg-red-700 w-full rounded-lg"
+                        onClick={handleButtonClick}
+                    >
+                        {isSignInForm ? "Sign In" : "Sign Up"}
+                    </button>
+                    <p
+                        className="py-4 cursor-pointer"
+                        onClick={toggleSignInForm}
+                    >
+                        {isSignInForm
+                            ? "New to Netflix? Sign Up Now"
+                            : "Already registered? Sign In Now"}
+                    </p>
+                </form>
             </div>
-            <form onSubmit={(e) => e.preventDefault()} className='absolute my-36 mx-auto bg-black right-0 left-0 p-12 w-3/12 text-white rounded-lg bg-opacity-80'>
-                <h1 className='font-bold text-3xl py-4'>{isSignInForm ? "Sign In" : "Sign Up"}</h1>
-                {!isSignInForm && <input ref={name} type='text' placeholder='FullName' className='p-4 my-4 w-full bg-gray-700' />}
 
-                <input ref={email} type='text' placeholder='Email Address' className='p-4 my-4 w-full bg-gray-700' />
-
-                <input ref={password} type='password' placeholder='Password' className='p-4 my-4 w-full bg-gray-700' />
-                <p className='text-red-700 font-bold text-lg py-2'>{errorMessage}</p>
-                <button type="" className='p-4 my-6 bg-red-700 w-full rounded-lg' onClick={handleButtonClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
-                <p className='py-4 cursor-pointer' onClick={toggleSignInForm}>{isSignInForm ? "New to Netflix? Sign Up Now" : "Already registered? Sign In Now"}</p>
-
-            </form>
 
         </div>
     )
